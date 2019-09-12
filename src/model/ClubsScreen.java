@@ -194,13 +194,7 @@ public class ClubsScreen {
 		}
 	}
 	
-	/*
-	 * this method sorts the owners by the number of pets they have
-	 */
-	public void sortByNumberOfPets() {
-		Comparator<Ownerr> petNumberComparator = new OwnerrPetNumberComparator();
-		Collections.sort(owners,petNumberComparator);
-	}
+	
 	
 	/*
 	 * this method sorts the clubs by the number of owners
@@ -210,11 +204,235 @@ public class ClubsScreen {
 		Collections.sort(clubs,ownerNumberComparator);
 	}
 	
-	public Club binarySort() {
-		
-		return null;
+	/*
+	 * This method sorts the clubs by id
+	 */
+	public void sortByIdClub() {
+		Comparator<Club> idComparator = new ClubIdComparator();
+		Collections.sort(clubs,idComparator);
 	}
 	
+	/*
+	 * This method sorts the club by name
+	 */
+	public void sortByNameClub() {
+		Comparator<Club> nameComparator = new ClubNameComparator();
+		Collections.sort(clubs,nameComparator);
+	}
+	
+	/*
+	 * this method sorts the club by pet type
+	 */
+	public void sortByPetTypeClub() {
+		Comparator<Club> petTypeComparator = new ClubPetTypeComparator();
+		Collections.sort(clubs,petTypeComparator);
+	}
+	
+	/*
+	 * this method sorts the owners by the number of pets they have
+	 */
+	public void sortByNumberOfPets() {
+		Comparator<Ownerr> petNumberComparator = new OwnerrPetNumberComparator();
+		Collections.sort(owners,petNumberComparator);
+	}
+	
+	/*
+	 * this method sorts the owners by full name
+	 */
+	public void sortByFullNameOwner() {
+		Comparator<Ownerr> fullNameComparator = new OwnerrFullNameComparator();
+		Collections.sort(owners,fullNameComparator);
+	}
+	
+	/*
+	 * This method sorts the owners by id
+	 */
+	public void sortByIdOwner() {
+		Comparator<Ownerr> idComparator = new OwnerrIdComparator();
+		Collections.sort(owners,idComparator);
+	}
+	
+	public void sortByNameOwner() {
+		Comparator<Ownerr> nameComparator = new OwnerNameComparator();
+		Collections.sort(owners,nameComparator);
+	}
+	
+	/*
+	 * This method sorts the owners by pet type
+	 */
+	public void sortByPetTypeOwner() {
+		Comparator<Ownerr> petTypeComparator = new OwnerrPetTypeComparator();
+		Collections.sort(owners,petTypeComparator);
+	}
+	
+	/*
+	 * this method sorts the pets by pet type
+	 */
+	public void sortByPetTypePet() {
+		Comparator<Pet> petTypeComparator = new PetTypeComparator();
+		Collections.sort(pets,petTypeComparator);
+	}
+	
+	/*
+	 * this method sorts the pets by name
+	 */
+	public void sortByPetName() {
+		Comparator<Pet> petNameComparator = new PetNameComparator();
+		Collections.sort(pets,petNameComparator);
+	}
+	
+	
+	public Club binarySort(String parameter, String value) {
+		int high = clubs.size()-1;
+		int low = 0;
+		int mid = -1;
+		boolean out = false;
+		Club c = null;
+		switch(parameter) {
+		
+		case "Name":
+			sortByNameClub();
+			for(int i = 0; i < clubs.size() && out == false; i++) {
+				mid = (low+high)/2;
+				if(clubs.get(mid).getName().compareTo(value)>0) {
+					high = mid-1;
+				}else if(clubs.get(mid).getName().compareTo(value)<0) {
+					low = mid+1;
+				}else if(clubs.get(mid).getName().equalsIgnoreCase(value)) {
+					out = true;
+				}
+			}
+			break;
+			
+		case "Id":
+			sortByIdClub();
+			for(int i = 0; i < clubs.size() && out == false; i++) {
+				mid = (low+high)/2;
+				if(clubs.get(mid).getId().compareTo(value)>0) {
+					high = mid-1;
+				}else if(clubs.get(mid).getId().compareTo(value)<0) {
+					low = mid+1;
+				}else if(clubs.get(mid).getId().equalsIgnoreCase(value)) {
+					out = true;
+				}
+			}
+			break;
+			
+		case "PetTypes":
+			sortByPetTypeClub();
+			for(int i = 0; i < clubs.size() && out == false; i++) {
+				mid = (low+high)/2;
+				if(clubs.get(mid).getPetTypes().compareTo(value)>0) {
+					high = mid-1;
+				}else if(clubs.get(mid).getPetTypes().compareTo(value)<0) {
+					low = mid+1;
+				}else if(clubs.get(mid).getPetTypes().equalsIgnoreCase(value)) {
+					out = true;
+				}
+			}
+			break;
+			
+		default:
+			mid = -1;
+			break;
+		}
+		if(out == true) {
+			c = clubs.get(mid);
+		}
+		
+		return c;
+	}
+	
+	public Ownerr binarySortOwner(String parameter, String value) {
+		int high = owners.size()-1;
+		int low = 0;
+		int mid = -1;
+		boolean out = false;
+		Ownerr o = null;
+		switch(parameter) {
+		
+		case "Name":
+			sortByNameOwner();
+			for(int i = 0; i < owners.size() && out == false; i++) {
+				mid = (low+high)/2;
+				if(owners.get(mid).getName().compareTo(value)>0) {
+					high = mid-1;
+				}else if(owners.get(mid).getName().compareTo(value)<0) {
+					low = mid+1;
+				}else if(owners.get(mid).getName().equalsIgnoreCase(value)) {
+					out = true;
+				}
+			}
+			break;
+			
+		case "Id":
+			sortByIdOwner();
+			for(int i = 0; i < owners.size() && out == false; i++) {
+				mid = (low+high)/2;
+				if(owners.get(mid).getId().compareTo(value)>0) {
+					high = mid-1;
+				}else if(owners.get(mid).getId().compareTo(value)<0) {
+					low = mid+1;
+				}else if(owners.get(mid).getId().equalsIgnoreCase(value)) {
+					out = true;
+				}
+			}
+			break;
+			
+		case "PetType":
+			sortByPetTypeOwner();
+			for(int i = 0; i < owners.size() && out == false; i++) {
+				mid = (low+high)/2;
+				if(owners.get(mid).getPetType().compareTo(value)>0) {
+					high = mid-1;
+				}else if(owners.get(mid).getPetType().compareTo(value)<0) {
+					low = mid+1;
+				}else if(owners.get(mid).getPetType().equalsIgnoreCase(value)) {
+					out = true;
+				}
+			}
+			break;
+			
+		default:
+			mid = -1;
+			break;
+		}
+		if(out == true) {
+			o = owners.get(mid);
+		}
+		
+		return o;
+	}
+	
+	public Pet linealSort(String parameter, String value) {
+		Pet p = null;
+		switch(parameter) {
+		
+		case "PetType":
+			sortByPetTypePet();
+			for(int i = 0; i < pets.size(); i++) {
+				String pe = pets.get(i).getType();
+				if(pe.equalsIgnoreCase(value)) {
+					p = pets.get(i);
+				}
+			}
+			break;
+			
+		case "Name":
+			sortByPetName();
+			for(int i = 0; i < pets.size(); i++) {
+				String pe = pets.get(i).getName();
+				if(pe.equalsIgnoreCase(value)) {
+					p = pets.get(i);
+				}
+			}
+			break;
+			
+			default:
+				break;
+		}
+		return p;
+	}
 	
 	
 	
