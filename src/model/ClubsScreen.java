@@ -60,7 +60,7 @@ public class ClubsScreen {
 	
 	public void loadOwners() throws IOException {
 		
-		File f = new File("");
+		File f = new File("data/owners.csv");
 		FileReader fr = new FileReader(f.getAbsolutePath());
 		BufferedReader br = new BufferedReader(fr);
 		
@@ -84,7 +84,7 @@ public class ClubsScreen {
 	
 	public void loadPets() throws IOException  {
 		
-		File f = new File("");
+		File f = new File("data/pets.csv");
 		FileReader fr = new FileReader(f.getAbsolutePath());
 		BufferedReader br = new BufferedReader(fr);
 		
