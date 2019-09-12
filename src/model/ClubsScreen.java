@@ -2,8 +2,10 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -434,7 +436,28 @@ public class ClubsScreen {
 		return p;
 	}
 	
+	public void addClub(String name, String id, String petType, String foundation) {
+		Club c = new Club(name,id,petType,foundation);
+		clubs.add(c);
+	}
 	
+	public String getClubReport() {
+		String msg = "The clubs are:\n";
+		msg += "NAME\tID\tPET_TYPE\tFOUNDATION\n";
+		for(int i = 0; i < clubs.size(); i++) {
+			Club c = clubs.get(i);
+			msg += c.getName()+"\t"+c.getId()+"\t"+c.getPetTypes()+"\t"+c.getFoundation()+"\n";
+		}
+		return msg;
+	}
+	
+	public void printClubsReport(String path) throws FileNotFoundException {
+		PrintWriter pw = new PrintWriter(new File(path));
+		
+		String rep = getClubReport();
+		pw.print(rep);
+		pw.close();
+	}
 	
 	
 	
