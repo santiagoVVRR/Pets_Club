@@ -37,15 +37,15 @@ public class ClubsScreen {
 		return (ArrayList<Pet>) pets;
 	}
 	
-	public void loadClubs() throws IOException {
+	public void loadClubs(String path, String sep) throws IOException {
 		
-		File f  = new File("data/clubs.csv");
+		File f  = new File(path);
 		FileReader fr = new FileReader(f.getAbsolutePath());
 		BufferedReader br = new BufferedReader(fr);
 		
 		String line = br.readLine();
 		while(line != null) {
-			String[] p = line.split(",");
+			String[] p = line.split(sep);
 			
 			String name = p[0];
 			String id = p[1];
@@ -60,15 +60,15 @@ public class ClubsScreen {
 		fr.close();
 	}
 	
-	public void loadOwners() throws IOException {
+	public void loadOwners(String path, String sep) throws IOException {
 		
-		File f = new File("data/owners.csv");
+		File f = new File(path);
 		FileReader fr = new FileReader(f.getAbsolutePath());
 		BufferedReader br = new BufferedReader(fr);
 		
 		String line = br.readLine();
 		while(line != null) {
-			String [] p = line.split(",");
+			String [] p = line.split(sep);
 			
 			String name = p[0];
 			String lastName = p[1];
@@ -84,15 +84,15 @@ public class ClubsScreen {
 		fr.close();
 	}
 	
-	public void loadPets() throws IOException  {
+	public void loadPets(String path, String sep) throws IOException  {
 		
-		File f = new File("data/pets.csv");
+		File f = new File(path);
 		FileReader fr = new FileReader(f.getAbsolutePath());
 		BufferedReader br = new BufferedReader(fr);
 		
 		String line = br.readLine();
 		while(line != null) {
-			String[] p = line.split("");
+			String[] p = line.split(sep);
 			
 			String name = p[0];
 			String id = p[1];
@@ -447,6 +447,26 @@ public class ClubsScreen {
 		for(int i = 0; i < clubs.size(); i++) {
 			Club c = clubs.get(i);
 			msg += c.getName()+"\t"+c.getId()+"\t"+c.getPetTypes()+"\t"+c.getFoundation()+"\n";
+		}
+		return msg;
+	}
+	
+	public String getOwnersReport() {
+		String msg = "The owners are:\n";
+		msg += "NAME\tLAST_NAME\tID\tPET_TYPE\tBIRTHDAY\n";
+		for(int i = 0; i < owners.size(); i++) {
+			Ownerr o = owners.get(i);
+			msg += o.getName()+"\t"+o.getLastName()+"\t"+o.getId()+"\t"+o.getPetType()+"\t"+o.getBirthday()+"\n";
+		}
+		return msg;
+	}
+	
+	public String getPetsReport() {
+		String msg = "The pets are:\n";
+		msg += "NAME\tID\tGENDER\tTYPE\tDATE\n";
+		for(int i = 0; i < pets.size(); i++) {
+			Pet p = pets.get(i);
+			msg += p.getName()+"\t"+p.getId()+"\t"+p.getGender()+"\t"+p.getType()+"\t"+p.getDate()+"\n";
 		}
 		return msg;
 	}
